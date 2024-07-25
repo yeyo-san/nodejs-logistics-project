@@ -48,7 +48,10 @@ routerWarehouse.post('/', async (req, res) => {
     const newWarehouse = {
        id: data.warehouses.length + 1,
        name: req.body.name,
-       location: req.body.location 
+       location: req.body.location,
+       shipmentsId : [],
+       driversId: [],
+       vehiclesId: []
     };
 
     data.warehouses.push(newWarehouse);

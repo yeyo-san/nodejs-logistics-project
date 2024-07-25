@@ -2,10 +2,79 @@
   "warehouses": [
     {
       "id": 1,
-      "name": "Almacen exito nuevo",
-      "location": "Centro comercial De Moda Outlet"
+      "name": "Almacenes de jabones con judios inc",
+      "location": "Calle 1 # 2-3",
+      "shipmentsId": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "driversId": [
+        1
+      ],
+      "vehiclesId": [
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Almacen chuchacaliche INC",
+      "location": "La estrella con los poderes",
+      "shipmentsId": [],
+      "driversId": [],
+      "vehiclesId": []
+    },
+    {
+      "id": 4,
+      "item": "Galletas Oreo",
+      "quantity": 2100,
+      "warehouseId": 1,
+      "driverId": 1
     }
   ],
-  "shipments": [],
-  "drives": []
+  "shipments": [
+    {
+      "id": 1,
+      "item": "Brownie de nutella",
+      "quantity": 10,
+      "warehouseId": 1,
+      "driverId": 1
+    },
+    {
+      "id": 2,
+      "item": "Brownie de marihuana",
+      "quantity": 15,
+      "warehouseId": 1,
+      "driverId": 1
+    },
+    {
+      "id": 3,
+      "item": "Galletas fungiferas",
+      "quantity": 200,
+      "warehouseId": 1,
+      "driverId": 1
+    },
+    {
+      "id": 4,
+      "item": "Galletas Oreo",
+      "quantity": 2020,
+      "warehouseId": 1,
+      "driverId": 1
+    }
+  ],
+  "drives": [
+    {
+      "id": 1,
+      "name": "Damian Alejandro Garcia",
+      "warehouseId": 1,
+      "vehicleId": [
+        1
+      ],
+      "shipmentsId": [
+        1
+      ]
+    }
+  ],
+  "vehicles": []
 }

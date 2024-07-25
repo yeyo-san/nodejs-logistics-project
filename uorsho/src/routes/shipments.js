@@ -45,20 +45,25 @@ routerShipments.get('/:id', async (req, res) => {
 //Create a new shipment 
 routerShipments.post('/', async (req, res) => {
     const data = await readsDataBase();
-    const foundWarehouse = data.warehouses.find(warehouse => warehouse.id === parseInt(req.body.wharehouseId))
+    const foundWarehouse = data.warehouses.find(warehouse => warehouse.id === parseInt(req.body.warehouseId))
+    const foundDriver = data.drives.find(driver => driver.id === parseInt(req.body.driverId))
+    const foundIndexWarehouse = data.warehouses.findIndex(warehouse => warehouse.id === parseInt(req.body.warehouseId))
     
-    if(!foundWarehouse){
-        return res.status(404).json({ message: "Id del almacen no encontrado"})
+    if(!foundWarehouse && !foundIndexWarehouse && !foundDriver){
+        return res.status(404).json({ message: "Id del almacen o conductor no encontrado"})
     }
 
     const newShipments = {
        id: data.shipments.length + 1,
        item: req.body.item,
        quantity: req.body.quantity,
-       warehouseId: foundWarehouse
+       warehouseId: foundWarehouse.id,
+       driverId: foundDriver.id
     };
 
+     (newShipments.id);
     data.shipments.push(newShipments);
+    data.warehouses[foundIndexWarehouse] = foundWarehouse;
     await writeData(data);
 
     res.status(201).json({ message: "Pedido creado exitosamente", shipment: newShipments})
@@ -73,17 +78,16 @@ routerShipments.put('/:id', async (req, res) => {
         return res.status(404).json({ message: "Pedido no encontrado"})
     }
 
-    const updateWarehouse = {
+    const updateShipments = {
         ...data.shipments[dataIndex],
         item: req.body.item,
         quantity: req.body.quantity,
-        warehouseId: data.shipments[dataIndex].warehouseId
     }
 
-    data.warehouses[dataIndex] = updateWarehouse;
+    data.warehouses[dataIndex] = updateShipments;
     await writeData(data)
 
-    res.json({ message: "Pedido actualizado exitosamente", warehouses: updateWarehouse})
+    res.json({ message: "Pedido actualizado exitosamente", warehouses: updateShipments})
 })
 
 //Delete shipment

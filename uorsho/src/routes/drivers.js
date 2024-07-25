@@ -33,11 +33,23 @@ routerDrivers.get('/', async (req, res) =>{
 //Create a new driver 
 routerDrivers.post('/', async (req, res) => {
     const data = await readsDataBase();
+    const foundWarehouse = data.warehouses.find(warehouse => warehouse.id === parseInt(req.body.warehouseId))
+    const foundIndexWarehouse = data.warehouses.findIndex(warehouse => warehouse.id === parseInt(req.body.warehouseId))
+
+    if(!foundWarehouse && foundIndexWarehouse){
+        return res.status(404).json({message: "Almacen no encontrado"})
+    }
+
     const newDrivers = {
        id: data.drivers.length + 1,
        name: req.body.name,
+       warehouseId: foundWarehouse.id,
+       vehicleId: [],
+       shipmentsId: []
     };
 
+    foundWarehouse.driversId.push[newDrivers.id]
+    data.warehouse[foundIndexWarehouse] = newDrivers
     data.drivers.push(newDrivers);
     await writeData(data);
 
