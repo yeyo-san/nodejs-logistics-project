@@ -1,0 +1,11 @@
+{
+  "warehouses": [
+    {
+      "id": 1,
+      "name": "Almacen exito nuevo",
+      "location": "Centro comercial De Moda Outlet"
+    }
+  ],
+  "shipments": [],
+  "drives": []
+}
